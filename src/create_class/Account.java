@@ -11,6 +11,10 @@ public class Account {
   }
 
   public void deposit(int money) {
+    if (balance < money) {
+      System.out.println("출금이 불가합니다.");
+      return;
+    }
     balance -= money;
     System.out.println(accNo + " 계좌에 " + money + "만원이 출금되었습니다.");
   }
