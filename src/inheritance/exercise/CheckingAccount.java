@@ -23,7 +23,7 @@ public class CheckingAccount extends Account {
 
   //TestAccount에서 실제로 사용하는 메서드
   public void pay(String cardNo, long amount) {
-    if (this.cardNo == cardNo) {
+    if (this.cardNo.equals(cardNo)) {
       if (amount < getBalance()) {
         setBalance(getBalance() - amount);
         return;
