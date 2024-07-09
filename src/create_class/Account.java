@@ -11,12 +11,15 @@ public class Account {
   }
 
   public void deposit(int money) {
-    if (balance < money) {
-      System.out.println("출금이 불가합니다.");
-      return;
+    try {
+      if (balance < money) {
+        throw new InsufficientException();
+      }
+
+      balance -= money;
+      System.out.println(accNo + " 계좌에 " + money + "만원이 출금되었습니다.");
+    } catch (InsufficientException e) {
     }
-    balance -= money;
-    System.out.println(accNo + " 계좌에 " + money + "만원이 출금되었습니다.");
   }
 
   public String getAccNo() {
