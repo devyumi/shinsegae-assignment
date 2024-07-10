@@ -1,7 +1,7 @@
 package jdbcEx.exec;
 
 import java.sql.SQLException;
-import jdbcEx.MemberDB;
+import jdbcEx.db.MemberDB;
 
 /**
  * JDBC 실행 클래스
