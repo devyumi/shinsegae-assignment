@@ -3,6 +3,8 @@ package board.connection;
 import board.dto.Board;
 import board.dto.BoardEditDto;
 import board.dto.BoardSaveDto;
+import board.exception.BoardException;
+import board.exception.ErrorMessage;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -45,8 +47,7 @@ public class BoardDB implements AutoCloseable {
       }
       return boards;
     } catch (SQLException e) {
-      //예외 처리
-      return null;
+      throw new BoardException(ErrorMessage.JDBC_SELECT_FAIL);
     }
   }
 
@@ -78,8 +79,7 @@ public class BoardDB implements AutoCloseable {
             .build();
       }
     } catch (SQLException e) {
-      //예외 처리
-      return null;
+      throw new BoardException(ErrorMessage.JDBC_SELECT_FAIL);
     }
   }
 
@@ -111,7 +111,7 @@ public class BoardDB implements AutoCloseable {
       }
 
     } catch (SQLException e) {
-      //예외 처리
+      throw new BoardException(ErrorMessage.JDBC_INSERT_FAIL);
     }
   }
 
@@ -143,7 +143,7 @@ public class BoardDB implements AutoCloseable {
       }
 
     } catch (SQLException e) {
-      //예외 처리
+      throw new BoardException(ErrorMessage.JDBC_UPDATE_FAIL);
     }
   }
 
@@ -171,7 +171,7 @@ public class BoardDB implements AutoCloseable {
       }
 
     } catch (SQLException e) {
-      //예외 처리
+      throw new BoardException(ErrorMessage.JDBC_DELETE_FAIL);
     }
   }
 
@@ -193,7 +193,7 @@ public class BoardDB implements AutoCloseable {
       }
 
     } catch (SQLException e) {
-      //예외 처리
+      throw new BoardException(ErrorMessage.JDBC_DELETE_FAIL);
     }
   }
 
@@ -217,14 +217,18 @@ public class BoardDB implements AutoCloseable {
         row = Math.max(row, rs.getInt("bNo"));
       }
       return row;
+
     } catch (SQLException e) {
-      //예외 처리
-      return row;
+      throw new BoardException(ErrorMessage.JDBC_SELECT_ID_FAIL);
     }
   }
 
   @Override
   public void close() throws Exception {
-    System.out.println("연결 해제");
+    try {
+      System.out.println("연결 해제");
+    } catch (Exception e) {
+      throw new BoardException(ErrorMessage.JDBC_CLOSE_FAIL);
+    }
   }
 }
