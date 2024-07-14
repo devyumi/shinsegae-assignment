@@ -54,7 +54,7 @@ public class BoardDB implements AutoCloseable {
   /**
    * Board Select method
    *
-   * @param bNo 테이블 번호
+   * @param bNo - board id
    * @return Board
    */
   public Board findBoard(int bNo) {
@@ -86,7 +86,7 @@ public class BoardDB implements AutoCloseable {
   /**
    * Board Insert method
    *
-   * @param request
+   * @param request - title, content, writer
    */
   public void saveBoard(BoardSaveDto request) {
 
@@ -118,7 +118,7 @@ public class BoardDB implements AutoCloseable {
   /**
    * Board Update method
    *
-   * @param request
+   * @param request - no, title, content, writer
    */
   public void updateBoard(BoardEditDto request) {
 
@@ -150,7 +150,7 @@ public class BoardDB implements AutoCloseable {
   /**
    * Board Delete method
    *
-   * @param board
+   * @param board - no, title, content, writer, date
    */
   public void deleteBoard(Board board) {
 
@@ -198,7 +198,7 @@ public class BoardDB implements AutoCloseable {
   }
 
   /**
-   * 마지막 행의 id를 반환하는 메서드. Insert 시 사용된다.
+   * 마지막 행의 id를 반환하는 메서드. Insert 시 사용한다.
    *
    * @return 마지막 행의 id
    */

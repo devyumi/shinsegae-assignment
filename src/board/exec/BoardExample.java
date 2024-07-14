@@ -84,8 +84,6 @@ public class BoardExample {
 
   /**
    * 게시물 생성 메서드
-   *
-   * @throws IOException
    */
   private static void create() throws IOException {
     System.out.println("\n[새 게시물 입력]");
@@ -125,8 +123,6 @@ public class BoardExample {
 
   /**
    * 특정 게시물 조회 메서드
-   *
-   * @throws IOException
    */
   private static void read() throws IOException {
     System.out.println("\n[게시물 읽기]");
@@ -170,8 +166,7 @@ public class BoardExample {
   /**
    * 게시물 수정 메서드
    *
-   * @param board
-   * @throws IOException
+   * @param board - no, title, content, writer, date
    */
   private static void update(Board board) throws IOException {
     System.out.println("\n[수정 내용 입력]");
@@ -213,7 +208,7 @@ public class BoardExample {
   /**
    * 게시물 삭제 메서드
    *
-   * @param board
+   * @param board - no, title, content, writer, date
    */
   private static void delete(Board board) {
     boardDB.deleteBoard(board);
@@ -221,8 +216,6 @@ public class BoardExample {
 
   /**
    * 모든 게시물 삭제 메서드
-   *
-   * @throws IOException
    */
   private static void clear() throws IOException {
     System.out.println("\n[게시물 전체 삭제]");
