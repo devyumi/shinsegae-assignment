@@ -30,4 +30,4 @@ FROM employees
 -- A.5.3.
 SELECT concat(e1.first_name, ' ', e1.last_name, ' report to ', UPPER(e2.first_name), ' ', UPPER(e2.last_name)) AS 'REPORT'
 FROM employees AS e1
-	JOIN employees AS e2 ON e1.manager_id = e2.employee_id;
+	LEFT JOIN employees AS e2 ON e1.manager_id = e2.employee_id;

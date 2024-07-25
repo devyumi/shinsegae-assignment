@@ -4,10 +4,12 @@ FROM employees
 	JOIN departments ON employees.department_id = departments.department_id;
 
 -- 2. 부서번호가 80인 부서 이름과 위치 조회
-SELECT department_name, street_address
-FROM departments
-	JOIN locations ON departments.location_id = locations.location_id
-WHERE departments.department_id = 80;
+SELECT job_title, street_address
+FROM jobs j
+	JOIN Employees e ON j.job_id = e.job_id
+	JOIN departments d ON e.department_id = d.department_id
+    JOIN locations l ON d.location_id = l.location_id
+WHERE d.department_id = 80;
 
 -- 3. 커미션을 받는 사원의 이름, 부서 이름, 위치 번호, 도시명 조회
 SELECT concat(first_name, ' ', last_name) AS 'Name', department_name, postal_code, city
@@ -33,7 +35,7 @@ WHERE city = 'Toronto';
 -- 6. 사원 이름, 사원번호, 관리자 이름, 관리자 번호 조회
 SELECT concat(e1.first_name, ' ', e1.last_name) AS 'Employee', e1.employee_id AS 'Emp#', concat(e2.first_name, ' ', e2.last_name) AS 'Manager', e2.employee_id AS 'Mgr#'
 FROM employees AS e1
-	JOIN employees AS e2 ON e1.manager_id = e2.employee_id;
+	LEFT JOIN employees AS e2 ON e1.manager_id = e2.employee_id;
 
 -- 7. 관리자가 없는 모든 사원 조회 (정렬: 사원번호)
 SELECT concat(e1.first_name, ' ', e1.last_name) AS 'Employee', e1.employee_id AS 'Emp#'
@@ -45,7 +47,7 @@ ORDER BY e1.employee_id;
 -- 8. 지정한 사원 이름의 부서와 동일한 부서에서 근무하는 모든 사원을 조회
 SELECT concat(employees.first_name, ' ', employees.last_name) AS 'Name', employees.department_id
 FROM (
-	SELECT first_name, last_name, employees.department_id
+	SELECT employees.department_id
     FROM employees
     WHERE last_name = 'King'
 ) AS filter_employees

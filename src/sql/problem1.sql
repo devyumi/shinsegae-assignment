@@ -90,4 +90,4 @@ FROM employees
 WHERE job_title NOT LIKE '%Clerk%'
 GROUP BY employees.job_id
 HAVING AVG(salary) > 10000
-ORDER BY 'AVG';
+ORDER BY AVG(salary) desc;
