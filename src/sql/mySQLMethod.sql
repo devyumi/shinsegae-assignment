@@ -1,0 +1,37 @@
+-- 내장 함수: 제어흐름, 문자열, 수학, 날짜/시간
+-- 1. 제어흐름: IF(), IFNULL(), NULLIF(), CASE~WHEN~ELSE~END()
+SELECT IF(100 > 200, '참', '거짓');
+SELECT IFNULL(NULL, 'NULL임'); -- 수식1 NOT NULL: 수식1 반환, 수식1 NULL: 수식2 반환
+SELECT NULLIF(100, 200); -- 수식1 == 수식2, NULL 반환, !=, 수식1 반환
+SELECT CASE 2
+		WHEN 1 THEN '일'
+		WHEN 3 THEN '삼'
+		WHEN 5 THEN '오'
+		ELSE '?'
+	END test;
+
+-- 2. 문자열: ASCII(), CHAR(), BIT_LENGTH(), CHAR_LENGTH(), LENGTH(), CONCAT_WS()
+-- ELT(), FIELD(), FIND_IN_SET(), INSTR(), LOCATE(), INSERT(), LEFT(), RIGHT(), LOWER(), UPPER(), LPAD(), RPAD(), TRIM(), SUBSTR()
+SELECT ASCII('A'), CHAR(65);
+SELECT BIT_LENGTH('abc'), CHAR_LENGTH('abc'), LENGTH('abc');
+SELECT BIT_LENGTH('ㄱㄴㄷ'), CHAR_LENGTH('ㄱㄴㄷ'), LENGTH('ㄱㄴㄷ');
+SELECT CONCAT_WS(' / ', '2024', '해커톤 우승자', '래리 킴');
+SELECT ELT(2, 'ONE', 'TWO', 'THREE'), FIELD('둘', 'ONE', 'TWO', 'THREE'),
+FIND_IN_SET('둘', 'ONE, TWO, THREE'), INSTR('하나둘셋', '둘'), LOCATE('둘', '하나둘셋');
+SELECT INSERT('abcdefghijk', 3, 4, '#####');
+SELECT LEFT('abcdefghi', 3), RIGHT('abcdefghi', 3);
+SELECT LOWER('DEF'), UPPER('abc');
+SELECT TRIM('     *SSG*             ');
+SELECT SUBSTR('abcdefghijk', 3, 4);
+
+-- 3. 수학: FORMAT(), BIN(), HEX(), OCT(),
+SELECT FORMAT(123456.123456, 1);
+SELECT BIN(31), HEX(31), OCT(31);
+
+-- 4. 날짜/시간: ADDDATE(), SUBDATE(), CURDATE() CURTIME(), NOW(), SYSDATE(), LOCALTIME(),
+-- YEAR(), MONTH(), DAY(), HOUR(), MINUTE(), SECOND(), MICROSECOND()
+SELECT ADDDATE('1978-06-08', INTERVAL 31 DAY);
+SELECT ADDDATE('1978-06-08', INTERVAL 31 DAY);
+SELECT ADDDATE('1978-06-08 23:59:59', INTERVAL 1 MINUTE);
+SELECT SUBDATE('1978-06-08 23:59:59', INTERVAL 23 HOUR);
+SELECT CURDATE(), CURTIME(), NOW(), SYSDATE(), LOCALTIME();
